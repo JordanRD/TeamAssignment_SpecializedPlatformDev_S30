@@ -2,8 +2,8 @@ import axios from 'axios';
 import * as SecureStore from 'expo-secure-store';
 
 const api = axios.create({
-  // baseURL: 'https://teamassignment-specializedplatformdev-s30.onrender.com/api', 
-  baseURL: 'http://10.100.246.57:5000/api', // IP Laptop
+  baseURL: 'https://teamassignment-specializedplatformdev-s30.onrender.com/api', 
+  // baseURL: 'http://10.100.246.57:5000/api', // IP Laptop
   headers: {
     'Content-Type': 'application/json',
   },
