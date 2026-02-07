@@ -26,17 +26,17 @@ router.get('/:id', async (req, res) => {
 
 // POST /api/products - Create new product
 router.post('/', async (req, res) => {
-  const product = new Product({
-    name: req.body.name,
-    description: req.body.description,
-    price: req.body.price,
-    image: req.body.image,
-    category: req.body.category,
-  });
-
   try {
-    const newProduct = await product.save();
-    res.status(201).json(newProduct);
+    const data = req.body;
+
+    if (Array.isArray(data)) {
+      const newProducts = await Product.insertMany(data);
+      return res.status(201).json(newProducts);
+    } else {
+      const newProduct = new Product(data);
+      const savedProduct = await newProduct.save();
+      return res.status(201).json(savedProduct);
+    }
   } catch (err) {
     res.status(400).json({ message: err.message });
   }
